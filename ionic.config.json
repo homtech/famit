@@ -1,0 +1,7 @@
+{
+  "name": "Famit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
