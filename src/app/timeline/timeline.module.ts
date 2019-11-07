@@ -6,11 +6,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TimelinePage } from './timeline.page';
+import {TimelineResolver} from './timeline.resolver'
 
 const routes: Routes = [
   {
     path: '',
-    component: TimelinePage
+    component: TimelinePage,
+    resolve: {
+      data: TimelineResolver
+    }
   }
 ];
 
@@ -21,6 +25,9 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TimelinePage]
+  declarations: [TimelinePage],
+  providers: [
+    TimelineResolver
+  ]
 })
 export class TimelinePageModule {}

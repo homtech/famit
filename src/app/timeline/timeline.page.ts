@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EventModel, EventType} from './timeline.model';
-import {Date as TopolaDate} from 'topola';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import {FirebaseService} from '../firebase/firebase-integration.service';
+import {JsonGedcomData} from 'topola';
 
 @Component({
   selector: 'app-timeline',
@@ -9,25 +12,60 @@ import {Date as TopolaDate} from 'topola';
 })
 export class TimelinePage implements OnInit {
 
+  private json: JsonGedcomData;
   events: Array<EventModel> ;
-  constructor() { }
+  constructor(
+    private firebaseService: FirebaseService,
+    public loadingCtrl: LoadingController,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     const events = this.getEvents();
-    console.log("Time " + events[0].name);
+    console.log("Time " + events[0].name + " " + this.json.fams[0].id);
   }
 
   public getEvents(): Array<EventModel> {
-    const event = new EventModel();
     this.events = new Array<EventModel>();
-    event.id = 'event1id';
-    event.type = EventType.Born;
-    event.name = 'Ngày cưới của A và B';
-    event.description = 'Mô tả ngày cưới của A và B';
-    event.date = {year: 2018, month: 12, day: 10};
-    event.location = {short_address: 'Nghệ An', detail_address: 'Yên Thành, Nghệ An', long: 5749577, lat: 4434434};
-    this.events.push(event);
+    this.getData();
+    this.json.fams.forEach(element => {
+      if(element.marriage != null) {
+        const event = new EventModel();
+        event.type = EventType.Marriage;
+        event.date = element.marriage.date;
+        event.place = element.marriage.place;
+        this.events.push(event);
+      }
+    });
+    this.json.indis.forEach(element => {
+      if(element.birth != null) {
+        const event = new EventModel();
+        event.type = EventType.Birth;
+        event.date = element.birth.date;
+        event.place = element.birth.place;
+        this.events.push(event);
+      }
+      if(element.death != null) {
+        const event = new EventModel();
+        event.type = EventType.Death;
+        event.date = element.death.date;
+        event.place = element.death.place;
+        this.events.push(event);
+      }
+    });
     return this.events;
   }
 
+  getData(): any{
+    this.route.data.subscribe(routeData => {
+      let data = routeData['data'];
+      if (data) {
+        this.json = data;
+        return data as JsonGedcomData;
+      }
+      else
+        return null;
+     })
+  }
 }

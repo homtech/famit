@@ -4,21 +4,16 @@ import { TopolaData } from '../utils/chart/gedcom_util';
 
 export enum EventType {
   Marriage,
-  Born,
+  Birth,
   Death
 }
 export class EventModel extends ShellModel {
   type: EventType;
   id: string;
   name: string;
-  date: TopolaDate;
+  date?: TopolaDate;
   description: string;
-  location: {
-    short_address: string,
-    detail_address: string,
-    long: number,
-    lat: number
-  };
+  place?: string;
   images: Array<{filename: string, url: string}> = [
     {
       filename: '',
