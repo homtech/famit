@@ -3,7 +3,7 @@ import { EventModel, EventType} from './timeline.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {FirebaseService} from '../firebase/firebase-integration.service';
-import {JsonGedcomData} from 'topola';
+import {JsonGedcomData, JsonDataProvider} from 'topola';
 
 @Component({
   selector: 'app-timeline',
@@ -29,14 +29,18 @@ export class TimelinePage implements OnInit {
   public getEvents(): Array<EventModel> {
     this.events = new Array<EventModel>();
     this.getData();
+    const jsonPro = new JsonDataProvider(this.json);
     this.json.fams.forEach(element => {
       if(element.marriage != null) {
         const event = new EventModel();
         event.type = EventType.Marriage;
         event.date = element.marriage.date;
         event.place = element.marriage.place;
-        event.name = element.husb + ' và ' + element.wife + ' cưới nhau' ;
-        event.description = element.husb + ' và ' + element.wife + ' cưới nhau' ;
+        const husb = jsonPro.getIndi(element.husb).getLastName() + ' ' + jsonPro.getIndi(element.husb).getFirstName();
+        const wife = jsonPro.getIndi(element.wife).getLastName() + ' ' + jsonPro.getIndi(element.wife).getFirstName();
+        event.name = husb + ' và ' + wife + ' cưới nhau' ;
+        event.description = husb + ' và ' + wife + ' cưới nhau' ;
+
         this.events.push(event);
       }
     });
@@ -60,6 +64,17 @@ export class TimelinePage implements OnInit {
         this.events.push(event);
       }
     });
+    // sort events by date
+    this.events.sort((a,b) => 
+        {
+          if(b.date.year !== a.date.year)
+            return b.date.year - a.date.year;
+          if(b.date.month !== a.date.month)
+            return b.date.month - a.date.month;
+          else
+            return b.date.day - a.date.day;
+        } 
+      );
     return this.events;
   }
 

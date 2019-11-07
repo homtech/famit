@@ -37,16 +37,13 @@ export class FamilytreePage implements OnInit, OnChanges {
   }
   //--------
   private async renderMainArea() {
-    if(!this.firebaseService.getCurrentUser()) {
+    this.getData();
+    if(!this.chartData) {
       this.url='https://firebasestorage.googleapis.com/v0/b/famit-vn.appspot.com/o/671101611_1_DF_5acbldctkyf75q0a.ged?alt=media&token=975aa85d-b9ee-4aa8-ae7e-558f00b73376';
       const data =  await loadFromUrl(this.url, true);
       /* console.log("data: " + data.chartData.indis[0].firstName);
       console.log("chartNode: " + (d3.select('#chart').node() as HTMLElement).textContent); */
       this.chartData = data.chartData;
-    }
-    else {
-      this.getData();
-     // this.chartData = this.firebaseService.getFamilyTreeTest();
     }
     
     const selection = getSelection(this.chartData, undefined, undefined);
