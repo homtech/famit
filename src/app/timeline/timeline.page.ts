@@ -35,6 +35,8 @@ export class TimelinePage implements OnInit {
         event.type = EventType.Marriage;
         event.date = element.marriage.date;
         event.place = element.marriage.place;
+        event.name = element.husb + ' và ' + element.wife + ' cưới nhau' ;
+        event.description = element.husb + ' và ' + element.wife + ' cưới nhau' ;
         this.events.push(event);
       }
     });
@@ -44,6 +46,8 @@ export class TimelinePage implements OnInit {
         event.type = EventType.Birth;
         event.date = element.birth.date;
         event.place = element.birth.place;
+        event.name = element.lastName + ' ' + element.firstName + ' ra đời' ;
+        event.description = element.lastName + ' ' + element.firstName + ' ra đời' ;
         this.events.push(event);
       }
       if(element.death != null) {
@@ -51,6 +55,8 @@ export class TimelinePage implements OnInit {
         event.type = EventType.Death;
         event.date = element.death.date;
         event.place = element.death.place;
+        event.name = element.lastName + ' ' + element.firstName + ' mất' ;
+        event.description = element.lastName + ' ' + element.firstName + ' mất' ;
         this.events.push(event);
       }
     });
