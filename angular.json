@@ -41,6 +41,9 @@
               },
               {
                 "input": "node_modules/videogular2/fonts/videogular.css"
+              },
+              {
+                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css"
               }
             ],
             "scripts": []
@@ -132,7 +135,7 @@
           }
         }
       }
-    },
+    }
   },
   "cli": {
     "defaultCollection": "@ionic/angular-toolkit"
