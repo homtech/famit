@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>timeline</ion-title>
+    <ion-title>FAMIT</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content id="body">
+  <div id="underHeader" style="background-color: rgb(18, 177, 177); color: white; height: 35px;">
+    <div class="container">
+        <div class="row">
+          <div class="offset-1 col-2 col-sm-2">
+            <button style="background-color: rgb(0, 221, 221) !important; color: aliceblue; margin: auto;" [routerLink]="['/new-task']">
+              <ion-icon style="color: aliceblue;" slot="icon-only" name="add"></ion-icon>
+              Add
+            </button>
+        </div>
+        </div>
+    </div>
+  </div>
+    <section *ngIf="events" class="list-mini-content timeline" padding>
+      <div id="container" *ngIf="events.length > 0" class="list-mini">
+          <ol>
+              <li *ngFor="let item of events" [routerLink]="['/details', item.id]">
+                <div>
+                  <ion-row>
+                      <b style="font-size: 14px;">{{item.name}}</b>
+                      <p style="margin: 0 0 0 20px; font-size: 10px">{{item.date.year}} | {{item.place}}</p>
+                  </ion-row>
+                    <p style="padding: 0 0 0 10px;">{{item.description}}</p>
+                </div>
+              </li>
+          </ol>
+      </div>
+    </section>
 </ion-content>
