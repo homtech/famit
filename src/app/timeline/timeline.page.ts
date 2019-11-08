@@ -23,7 +23,6 @@ export class TimelinePage implements OnInit {
 
   ngOnInit() {
     const events = this.getEvents();
-    console.log("Time " + events[0].name + " " + this.json.fams[0].id);
   }
 
   public getEvents(): Array<EventModel> {
