@@ -32,19 +32,19 @@
                       <b style="font-size: 14px;">{{item.name}}</b>
                       <p style="margin: 0 0 0 20px; font-size: 10px">{{item.date.year}} | {{item.place}}</p>
                   </ion-row>
-                    <p style="padding: 0 0 0 10px;">{{item.description}}</p>
+                    <p style="padding: 5px 5px 5px 10px;">{{item.description}}</p>
                 </div>
               </li>
           </ol>
           <ul>
               <li *ngFor="let item of events" [routerLink]="['/details', item.id]">
-                <h1>{{item.date.year}}</h1>
+                <h1><b>{{item.date.year}}</b></h1>
                 <div>
                   <ion-row>
                       <b style="font-size: 14px;">{{item.name}}</b>
                       <p style="margin: 0 0 0 20px; font-size: 10px">{{item.date.year}} | {{item.place}}</p>
                   </ion-row>
-                    <p style="padding: 0 0 0 10px;">{{item.description}}</p>
+                    <p style="padding: 5px 5px 0px 10px !important;">{{item.description}}</p>
                 </div>
               </li>
           </ul>
