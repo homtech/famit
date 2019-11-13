@@ -15,20 +15,21 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 export class AppComponent {
   appPages = [
     {
-      title: 'Categories',
-      url: '/app/categories',
+      title: 'Dòng thời gian',
+      url: '/app/timeline',
       icon: './assets/sample-icons/side-menu/categories.svg'
+    },
+    {
+      title: 'Gia phả',
+      url: '/app/familytree',
+      icon: './assets/sample-icons/side-menu/contact-card.svg'
     },
     {
       title: 'Profile',
       url: '/app/user',
       icon: './assets/sample-icons/side-menu/profile.svg'
     },
-    {
-      title: 'Contact Card',
-      url: '/contact-card',
-      icon: './assets/sample-icons/side-menu/contact-card.svg'
-    },
+    
     {
       title: 'Notifications',
       url: '/app/notifications',
