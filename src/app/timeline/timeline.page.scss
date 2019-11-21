@@ -9,7 +9,7 @@
 }
 
 ion-row {
-    background-color: #5990e9 !important;
+    //background-color: #5990e9 !important;
     color: white;
     padding: 10px;
   }
@@ -48,7 +48,7 @@ ion-row {
     list-style-type: none;
     width: 205px;
     height: 5px;
-    background: #90e959;
+    background: rgb(88, 88, 88);
   }
   
   .timeline ol li:last-child {
@@ -101,6 +101,12 @@ ion-row {
     top: -30px;
     transform: translateY(-100%);
   }
+
+  .timeline ol li:nth-child(odd) div ion-row {
+    background-color: #5990e9;
+  }
+
+
   
   .timeline ol li:nth-child(odd) div::before {
     top: 100%;
@@ -111,11 +117,15 @@ ion-row {
   .timeline ol li:nth-child(even) div {
     top: calc(100% + 30px);
   }
+
+  .timeline ol li:nth-child(even) div ion-row {
+    background: #F45B69;
+  }
   
   .timeline ol li:nth-child(even) div::before {
     top: -31px;
     border-width: 31px 0 0 6px;
-    border-color: #5990e9;
+    border-color: #F45B69;
   }
   
   .timeline time {
@@ -282,7 +292,7 @@ ion-row {
 
   @media screen and (max-width: 900px) {
     .timeline ul {
-      display: block;
+      display: none;
     }
     .timeline ul li div {
       width: 250px;
@@ -310,9 +320,11 @@ ion-row {
     .timeline ol {
       display: none;
     }
+
     .timeline ul {
+      display: block;
       padding: 0px;
-      margin: 0 0 0 15px;
+      margin: 10px 0 0 5px;
     }
 
     .timeline ul li h1 {
@@ -326,7 +338,42 @@ ion-row {
     list-style-type: none;
     width: 5px;
     height: 150px;
-    background: #90e959;
+    background: rgb(88, 88, 88);
+    }
+
+    .timeline ul li h1::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 3px;
+      width: 0;
+      height: 0;
+      //border-style: solid;
+      //border: 1px solid #ccc;
+    }
+
+    .timeline ul li div {
+    //position: absolute;
+    //left: calc(100% + 0px);
+    width: 250px !important;
+    height: auto;
+    /* font-size: 1rem;
+    white-space: normal;
+    color: black;
+    background: white;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px; */
+  }
+    
+    .timeline ul li:nth-child(odd) h1 {
+      top: 30px;
+      transform: translateY(-100%);
+    }
+
+    .timeline ul li:nth-child(even) h1 {
+      top: 30px;
+      transform: translateY(-100%);
     }
 
     .timeline ul li:not(:last-child)::after {
@@ -345,7 +392,7 @@ ion-row {
 
     .timeline ul li div {
       width: calc(100vw - 75px);
-      margin: 0px 0 0 12px;
+      margin: -20px 0 0 12px;
     }
     .timeline ul li:nth-child(even) div {
       left: 45px;

@@ -19,9 +19,12 @@ const routes: Routes = [
   { path: 'firebase', loadChildren: () => import('./firebase/firebase-integration.module').then(m => m.FirebaseIntegrationModule) },
   { path: 'maps', loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule) },
   { path: 'video-playlist', loadChildren: () => import('./video-playlist/video-playlist.module').then(m => m.VideoPlaylistPageModule) },
+  { path: 'app/details', loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)},
   { path: '**', redirectTo: 'page-not-found' },
   { path: 'app/timeline', loadChildren: () => import('./timeline/timeline.module').then(m => m.TimelinePageModule) },
-  { path: 'app/familytree', loadChildren: () => import('./familytree/familytree.module').then(m => m.FamilytreePageModule) }
+  { path: 'app/familytree', loadChildren: () => import('./familytree/familytree.module').then(m => m.FamilytreePageModule) },
+  
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
